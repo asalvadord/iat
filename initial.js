@@ -33,80 +33,87 @@ define(['pipAPI','pipScorer','underscore'], function(APIConstructor, Scorer, _) 
 			},
 			//When scoring, we will consider the compatible condition the pairing condition that requires response with one key to [category1,attribute1] and the other key to [category2,attribute2]
 			category1 : {
-				name : 'Male', //Will appear in the data and in the default feedback message.
+				name : 'Black people', //Will appear in the data and in the default feedback message.
 				title : {
-					media : {word : 'Male'}, //Name of the category presented in the task.
+					media : {word : 'Black people'}, //Name of the category presented in the task.
 					css : {color:'#336600','font-size':'1.8em'}, //Style of the category title.
 					height : 4 //Used to position the "Or" in the combined block.
 				},
 				stimulusMedia : [ //Stimuli content as PIP's media objects
-					{word: 'Josh'},
-					{word: 'Brandon'},
-					{word: 'Peter'},
-					{word: 'Ian'},
-					{word: 'Andrew'}
+					{word: 'Tyron'},
+					{word: 'Malik'},
+					{word: 'Terrell'},
+					{word: 'Jazmin'},
+					{word: 'Tiara'},
+					{word: 'Shanice'}
 				],
 				//Stimulus css (style)
 				stimulusCss : {color:'#336600','font-size':'2.3em'}
 			},
 			category2 :	{
-				name : 'Female', //Will appear in the data and in the default feedback message.
+				name : 'White people', //Will appear in the data and in the default feedback message.
 				title : {
-					media : {word : 'Female'}, //Name of the category presented in the task.
+					media : {word : 'White people'}, //Name of the category presented in the task.
 					css : {color:'#336600','font-size':'1.8em'}, //Style of the category title.
 					height : 4 //Used to position the "Or" in the combined block.
 				},
 				stimulusMedia : [ //Stimuli content as PIP's media objects
-					{word: 'Emily'},
-					{word: 'Donna'},
-					{word: 'Debbie'},
-					{word: 'Katherine'},
-					{word: 'Jane'}
+					{word: 'Jake'},
+					{word: 'Connor'},
+					{word: 'Bradley'},
+					{word: 'Allison'},
+					{word: 'Emma'},
+					{word: 'Emily'}
 				],
 				//Stimulus css
 				stimulusCss : {color:'#336600','font-size':'2.3em'}
 			},
 			attribute1 :
 			{
-				name : 'Leader',
+				name : 'Bad words',
 				title : {
-					media : {word : 'Leader'},
+					media : {word : 'Bad words'},
 					css : {color:'#0000FF','font-size':'1.8em'},
 					height : 4 //Used to position the "Or" in the combined block.
 				},
 				stimulusMedia : [ //Stimuli content as PIP's media objects
 					{word: 'awful'},
-					{word: 'Leader'},
-					{word: 'Ambitious'},
-					{word: 'Determined'},
-{word: 'Dynamic'},
-{word: 'Assertive'}
+					{word: 'failure'},
+					{word: 'agony'},
+					{word: 'hurt'},
+					{word: 'horrible'},
+					{word: 'terrible'},
+					{word: 'nasty'},
+					{word: 'evil'}
 				],
 				//Stimulus css
 				stimulusCss : {color:'#0000FF','font-size':'2.3em'}
 			},
 			attribute2 :
 			{
-				name : 'Supporter',
+				name : 'Good words',
 				title : {
-					media : {word : 'Supporter'},
+					media : {word : 'Good words'},
 					css : {color:'#0000FF','font-size':'1.8em'},
 					height : 4 //Used to position the "Or" in the combined block.
 				},
 				stimulusMedia : [ //Stimuli content as PIP's media objects
-					{word: 'Supporter'},
-					{word: 'Helpful'},
-					{word: 'Understanding'},
-					{word: 'Sympathetic'},
-					{word: 'Compassionate'}
+					{word: 'laughter'},
+					{word: 'happy'},
+					{word: 'glorious'},
+					{word: 'joy'},
+					{word: 'wonderful'},
+					{word: 'peace'},
+					{word: 'pleasure'},
+					{word: 'love'}
 				],
 				//Stimulus css
 				stimulusCss : {color:'#0000FF','font-size':'2.3em'}
 			},
 
-			// base_url : {//Where are your images at?
-				// image : '/implicit/user/yba/pipexample/biat/images/'
-			// },
+			base_url : {//Where are your images at?
+				image : '/implicit/user/yba/pipexample/biat/images/'
+			},
 
 			//nBlocks : 7, This is not-supported anymore. If you want a 5-block IAT, change blockSecondCombined_nTrials to 0.
 			
@@ -134,11 +141,11 @@ define(['pipAPI','pipScorer','underscore'], function(APIConstructor, Scorer, _) 
 			//Show a reminder what to do on error, throughout the task
 			remindError : true,
 
-			remindErrorText : '<p align="center" style="font-size:0.6em; font-family:arial”>' +
+			remindErrorText : '<p align="center" style="font-size:"0.6em"; font-family:arial">' +
 			'If you make a mistake, a red <font color="#ff0000"><b>X</b></font> will appear. ' +
 			'Press the other key to continue.<p/>',
 
-			remindErrorTextTouch : '<p align="center" style="font-size:1.4em; font-family:arial">' +
+			remindErrorTextTouch : '<p align="center" style="font-size:"1.4em"; font-family:arial">' +
 			'If you make a mistake, a red <font color="#ff0000"><b>X</b></font> will appear. ' +
 			'Touch the other side to continue.<p/>',
 
@@ -755,19 +762,13 @@ define(['pipAPI','pipScorer','underscore'], function(APIConstructor, Scorer, _) 
 		function getLayout(params)
 		{
 
-			function buildContent(layout) {
-    if (!layout) { 
-        return ''; 
-    }
-    // Tomamos la propiedad 'word' o 'html' si existe, o el propio layout.
-    var content = layout.word || layout.html || layout;
-    // Si es un string, escapamos caracteres especiales.
-    if (_.isString(layout) || layout.word) {
-        content = _.escape(content);
-    }
-    // Dado que no usas imágenes, simplemente retornamos el contenido.
-    return content;
-}
+			function buildContent(layout){
+				if (!layout){return '';}
+				var isImage = !!layout.image;
+				var content = layout.word || layout.html || layout.image || layout;
+				if (_.isString(layout) || layout.word) {content = _.escape(content);}
+				return isImage ? '<img src="' + piCurrent.base_url.image + content + '" />' : content;
+			}
 
 			function buildStyle(css){
 				css || (css = {});
