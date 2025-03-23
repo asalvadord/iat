@@ -134,11 +134,11 @@ define(['pipAPI','pipScorer','underscore'], function(APIConstructor, Scorer, _) 
 			//Show a reminder what to do on error, throughout the task
 			remindError : true,
 
-			remindErrorText : '<p align="center" style="font-size:"0.6em"; font-family:arial">' +
+			remindErrorText : '<p align="center" style="font-size:0.6em; font-family:arial”>' +
 			'If you make a mistake, a red <font color="#ff0000"><b>X</b></font> will appear. ' +
 			'Press the other key to continue.<p/>',
 
-			remindErrorTextTouch : '<p align="center" style="font-size:"1.4em"; font-family:arial">' +
+			remindErrorTextTouch : '<p align="center" style="font-size:1.4em; font-family:arial">' +
 			'If you make a mistake, a red <font color="#ff0000"><b>X</b></font> will appear. ' +
 			'Touch the other side to continue.<p/>',
 
@@ -1392,5 +1392,6 @@ define(['pipAPI','pipScorer','underscore'], function(APIConstructor, Scorer, _) 
 
 	return iatExtension;
 });
+
 
 
