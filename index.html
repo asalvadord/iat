@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>IAT Local Test</title>
+    <script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.js"></script>
+</head>
+<body>
+    <h1>Loading IAT...</h1>
+    <script>
+        require(['index.js'], function(iatExtension){
+            console.log('IAT loaded', iatExtension);
+            // Aquí deberías inicializar el IAT si tu código lo permite
+        });
+    </script>
+</body>
+</html>
