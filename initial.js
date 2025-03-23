@@ -1394,3 +1394,5 @@
 
 		return API.script;
 	}
+
+iatExtension({});
