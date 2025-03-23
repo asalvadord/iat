@@ -755,13 +755,19 @@ define(['pipAPI','pipScorer','underscore'], function(APIConstructor, Scorer, _) 
 		function getLayout(params)
 		{
 
-			function buildContent(layout){
-				if (!layout){return '';}
-				var isImage = !!layout.image;
-				var content = layout.word || layout.html || layout.image || layout;
-				if (_.isString(layout) || layout.word) {content = _.escape(content);}
-				return isImage ? '<img src="' + piCurrent.base_url.image + content + '" />' : content;
-			}
+			function buildContent(layout) {
+    if (!layout) { 
+        return ''; 
+    }
+    // Tomamos la propiedad 'word' o 'html' si existe, o el propio layout.
+    var content = layout.word || layout.html || layout;
+    // Si es un string, escapamos caracteres especiales.
+    if (_.isString(layout) || layout.word) {
+        content = _.escape(content);
+    }
+    // Dado que no usas imágenes, simplemente retornamos el contenido.
+    return content;
+}
 
 			function buildStyle(css){
 				css || (css = {});
