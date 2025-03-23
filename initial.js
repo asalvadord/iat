@@ -1,10 +1,3 @@
-//YBYB:Created from iat8.js, for Qualtrics
-	/**
-	Created by: Yoav Bar-Anan (baranan@gmail.com). Modified by Gal
-	 * @param  {Object} options Options that replace the defaults...
-	 * @return {Object}         PIP script
-	**/
-
 	function iatExtension(options)
 	{
 		var API = new APIConstructor();		
